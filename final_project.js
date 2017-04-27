@@ -1,7 +1,10 @@
 var namespace = "http://www.w3.org/2000/svg"
 
 // Write your code here!
-
+var Kirby = makeImage ("http://rs1196.pbsrc.com/albums/aa401/Youtube-DarkMario1000/Kirby%20Super%20Tuff%20Pink%20Puff%20Superstars/Kirby.gif~c200", 30, 70, 60, 30)
+var burger = makeImage ("https://g.foolcdn.com/editorial/images/164021/mcdonalds-angus-deluxe_large.png", 70, 20, 70, 30)
+var cake = makeImage ("http://www.laroccacakes.com/wp-content/uploads/2015/06/strawberry_shortcake_cake.png", 20, 10, 40, 80)
+var pizza = makeImage ("http://www.goodtimespizzamidland.com/wp-content/uploads/2015/06/Pizza-Slice1.png", 70, 30, 40, 80)
 // DO NOT EDIT CODE BELOW THIS LINE!
 function getX(shape) {
   if (!shape) {
