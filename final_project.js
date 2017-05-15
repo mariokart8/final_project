@@ -2,109 +2,82 @@ var namespace = "http://www.w3.org/2000/svg"
 
 // Write your code here!
 var kirby = makeImage ("http://rs1196.pbsrc.com/albums/aa401/Youtube-DarkMario1000/Kirby%20Super%20Tuff%20Pink%20Puff%20Superstars/Kirby.gif~c200", 30, 70, 60, 30, 1.0)
-var burger = makeImage ("https://g.foolcdn.com/editorial/images/164021/mcdonalds-angus-deluxe_large.png", 70, 20, 70, 30)
-var cake = makeImage ("http://www.laroccacakes.com/wp-content/uploads/2015/06/strawberry_shortcake_cake.png", 20, 10, 40, 80)
-var pizza = makeImage ("http://www.goodtimespizzamidland.com/wp-content/uploads/2015/06/Pizza-Slice1.png", 70, 30, 40, 80)
-var hotdog = makeImage ("http://www.pngall.com/wp-content/uploads/2016/04/Hot-Dog-Free-Download-PNG.png", 140, 30, 40, 80)
-var milkshake = makeImage ("https://s3.amazonaws.com/cos-cdn2/SteaknShake/Specials+August+2015+Promo/SNS_Shake_Speculoos_350x300.png", 150,0.5,40,80)
-var land= makeRect(00, 180, 2000, 50, "black", 1)
-
+var burger = makeImage ("https://g.foolcdn.com/editorial/images/164021/mcdonalds-angus-deluxe_large.png", 70, -40, 50, 30)
+var cake = makeImage ("http://www.laroccacakes.com/wp-content/uploads/2015/06/strawberry_shortcake_cake.png", 20, -60, 30, 80)
+var pizza = makeImage ("http://www.goodtimespizzamidland.com/wp-content/uploads/2015/06/Pizza-Slice1.png", 60, -90, 30, 80)
+var hotdog = makeImage ("http://www.pngall.com/wp-content/uploads/2016/04/Hot-Dog-Free-Download-PNG.png", 140, -70, 30, 80)
+var milkshake = makeImage ("https://s3.amazonaws.com/cos-cdn2/SteaknShake/Specials+August+2015+Promo/SNS_Shake_Speculoos_350x300.png", 120,-100,30,70)
+var gordo = makeImage ("https://vignette3.wikia.nocookie.net/kirby/images/4/4c/KMA_Giant_Gordo_sprite.png/revision/latest?cb=20120716184414&path-prefix=en", 20, -500, 40, 80)
+var waddledee = makeImage ("https://vignette1.wikia.nocookie.net/kirby/images/3/37/KSqSq_ParasolWaddleDee.png/revision/latest?cb=20131007000119&path-prefix=en", 140, -200, 40, 80)
+var land = makeRect(00, 100, 2000, 50, "black", 1)
 
 var score = 0;
-var scoreLabel = makeText("Score : "+ score, 10, 15, 15, "sans-serif", "black")
+var scoreLabel = makeText("Score : "+ score, 3, 10, 13, "sans-serif", "green")
 
 addEventListener('keydown', poyo)
 
+var animationFrame;
 function food(){
 
-  move(burger,0,10)
-  move(cake, 0,10)
-  move(pizza, 0,10)
-  move(hotdog, 0,10)
-  move(milkshake,0,10)
+  move(burger,0,2)
+  move(cake, 0,3)
+  move(pizza, 0,2)
+  move(hotdog, 0,2)
+  move(milkshake,0,1)
+  move(gordo,0,5)
+  move(waddledee,0,2)
+  var y1 = getY(burger)
+  var y2 = getY(cake)
+  var y3 = getY(pizza)
+  var y4 = getY(hotdog)
+  var y5 = getY(milkshake)
+  var y6 = getY(gordo)
+  var y7 = getY(waddledee)
+      if(y1 > 100){
+  setY(burger,-40)
+} else if (y2 > 100){
+ setY(cake,-70)
+  } else if (y3 > 100){
+    setY(pizza,-60)
+  } else if (y4 > 100){
+    setY(hotdog,-50)
+  }else if (y5 > 100){
+    setY(milkshake,-90)
+  }else if (y6 > 100){
+    setY(gordo,-1000)
+  }else if(y7 > 100){
+    setY(waddledee, -200)
+  }
 
-if(getY(burger) < -10){
-move(burger,0,300)
-}
-  if(collides(kirby,burger))
-  score=score+1
-  scoreLabel.innerHTML = "Score : "+score;
-}else{ if(collides(land,burger)){
-  makeText("My burger!",83,100,30,"Press Start 2P","brown")
-        stopAnimationFrame(obstacles)
-      }else{ if(collides(kirby,burger)){
-       setY(burger,0)
-
-
-
-
-}
-
-if(getY(cake) < -10){
-move(cake,0,300)
-}
-  if(collides(kirby,cake))
-  score=score+1
-  scoreLabel.innerHTML = "Score : "+score;
-}else{ if(collides(land,cake)){
-  makeText("Poyo...;-;",83,100,30,"Press Start 2P","gold")
-        stopAnimationFrame(obstacles)
-      }else{ if(collides(kirby,cake)){
-       setY(burger,0)
-}
-
-if(getY(pizza) < -10){
-move(cake,0,300)
-}
-  if(collides(kirby,pizza))
-  score=score+1
-  scoreLabel.innerHTML = "Score : "+score;
-}else{ if(collides(land,pizza)){
-  makeText("Not the pizza...!",83,100,30,"Press Start 2P","red")
-        stopAnimationFrame(obstacles)
+  if(collides(kirby,gordo)||collides(kirby, waddledee)){
+    makeText("GAME OVER!",33,50,20,"red")
+  } else {
+    requestAnimationFrame(food)
+  }
 }
 
-if(getY(hotdog) < -10){
-move(cake,0,300)
-}
-  if(collides(kirby,hotdog))
-  score=score+1
-  scoreLabel.innerHTML = "Score : "+score;
-}else{ if(collides(land,hotdog)){
-  makeText("",83,100,30,"Press Start 2P","green")
-        stopAnimationFrame(obstacles)
-}
-
-if(getY(milkshake) < -10){
-move(milkshake,0,300)
-}
-  if(collides(kirby,milkshake))
-  score=score+1
-  scoreLabel.innerHTML = "Score : "+score;
-}else{ if(collides(land,milkshake)){
-  makeText("Poyo...",83,100,30,"Press Start 2P","white")
-        stopAnimationFrame(obstacles)
-}
-requestAnimationFrame(food)
-}
-
-
-
-  function poyo(event){
+function poyo(event){
     var W = getX(kirby)
     var E = getY(kirby)
-      if(event.key == "w" && E > 30){
+      if(event.key == "w" && E > 100){
       move(kirby,0,-73)
 
   }
-   if(event.key == "d" && W < 50){
-      move(kirby,20,0)
+   if(event.key == "d" && W < 159){
+      move(kirby,10,0)
 
   }
-   if(event.key == "a" && W > -10){
-      move(kirby,-40,0)
+   if(event.key == "a" && W > -8.8){
+      move(kirby,-20,0)
+}
+if(collides(burger,kirby)||collides(kirby,cake)||collides(pizza,kirby)||collides(hotdog, kirby)||collides(milkshake, kirby)){
+  score=score+1
+  scoreLabel.innerHTML = "Score : "+score;
 }
 }
+
+
+
 
 
 
